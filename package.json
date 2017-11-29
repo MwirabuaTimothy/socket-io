@@ -1,0 +1,29 @@
+{
+  "name": "socket-io",
+  "version": "1.0.0",
+  "description": "my socket io server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TechyTimo/socket-io.git"
+  },
+  "keywords": [
+    "socket",
+    "socket-io",
+    "websockets"
+  ],
+  "author": "TechyTimo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechyTimo/socket-io/issues"
+  },
+  "homepage": "https://github.com/TechyTimo/socket-io#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4",
+    "socketio-wildcard": "^2.0.0"
+  }
+}
