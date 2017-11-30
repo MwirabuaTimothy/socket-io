@@ -22,23 +22,47 @@
     <script src="./patch.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var data = {
-        'id': 1,
-        'user_id': 1006,
-        'initiator_id': 1001, 
-        'initiator_name': 'Thomas', 
-        'level': 'success',
-        'type': 'team_add', 
-        'team_slug': 'team-1', 
-        'team_title': 'Team 1',
-        'headline': `'Thomas' added you to 'Team 1'`,
-      }
+      var snapshot = {data: {
+        "event":"App\\Events\\NewMarketSnapshot",
+        "data":{
+          "snapshot":[
+            ["00:56:55", "00:54:48", "DT Token", "<a href=\"https://bittrex.com/Market/Index?MarketName=BTC-DRACO\" target=\"_blank\">DRACO</a>", "0.00000291", "387", 3.928571428571437, "0.02", "-13.37", "-2.26", 1], 
+            ["00:56:55", "00:54:14", "Magi", "<a href=\"https://bittrex.com/Market/Index?MarketName=BTC-XMG\" target=\"_blank\">XMG</a>", "0.00005318", "358", 2.8228924980665178, "0.94", "-13.1", "-1.97", 1 ], 
+            ["00:56:55", "00:54:15", "KoreCoin", "<a href=\"https://bittrex.com/Market/Index?MarketName=BTC-KORE\" target=\"_blank\">KORE</a>", "0.00059875", "254", 2.7579460424246536, "1.97", "-15.91", "-6.45", 1]
+          ],
+          "channel":"snapshot",
+          "socket":null,
+        },
+        "socket":null
+      }};
+
+      var notification = {data: { 
+        channel: 'pressdesk',
+        user_id: 1001,
+        notification: 
+         { level: 'success',
+           user_id: 1001,
+           headline: 'Test notification',
+           message: 'Test notification',
+           type: 'request_new',
+           initiator_name: 'Tim',
+           initiator_id: 1002,
+           image: '/img/avatars/0.jpg',
+           updated_at: '2017-11-30 08:59:08',
+           created_at: '2017-11-30 08:59:08',
+           id: 10000,
+           request_id: 10000,
+           read: 0 },
+        socket: null 
+      }};
       var socket = io();
       var demo = io('/demo');
       var pressdesk = io('/pressdesk');
+      var bittrex = io('/bittrex');
       patch(socket)
       patch(demo)
       patch(pressdesk)
+      patch(bittrex)
       $(function () {
         $('form').submit(function(){
           demo.emit('chat', $('#m').val());
@@ -48,6 +72,7 @@
         demo.on('chat', function(msg){
           $('#messages').append($('<li>').text(msg));
         });
+        // io.sockets.in('pressdesk').emit(1001, notification)
       });
     </script>
   </body>
