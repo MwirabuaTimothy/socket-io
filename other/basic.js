@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http, { origins: '*:*'});
 var redis = require("redis")
 var pub = redis.createClient();
 
